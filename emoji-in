@@ -1,0 +1,136 @@
+// xkb-symbols-emoji
+//
+// Björn (https://gitlab.freedesktop.org/bjohas), 2020-12-27
+// Please get in touch if you think I might be able to help.
+//
+// To create more emoji layouts, see https://github.com/bjohas/xkb-emoji.
+
+// Main layout - does not include a LVL3 key. Needs to be enabled separately
+// (e.g., on command line or, e.g., via Gnome Tweaks)
+default alphanumeric_keys modifier_keys
+xkb_symbols "basic" {
+    name[Group1]= "Emoji layout (variant 01, use ralt for emoji)";
+    include "emoji(map00)"
+    include "level3(ralt_switch)"
+    // key <TLDE> {	[     grave,	asciitilde	]	};
+    // key <LSGT> {	[     grave,	asciitilde	]	};
+};
+
+partial alphanumeric_keys modifier_keys
+xkb_symbols "variant01" {
+    name[Group1]= "English (US) with emoji (variant 1, enable a LVL3 chooser)";
+    include "emoji(map00)"
+    key <LSGT> {	[     grave,	asciitilde	]	};
+};
+
+partial alphanumeric_keys modifier_keys
+xkb_symbols "variant02" {
+    name[Group1]= "Emoji layout (variant 02)";
+    include "emoji(map00)"
+};
+
+partial alphanumeric_keys modifier_keys
+xkb_symbols "variant03" {
+    name[Group1]= "Emoji layout (variant 03)";
+    include "emoji(map00)"
+};
+
+// The layout.
+// 
+// ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┲━━━━━━━━━┓
+// │ Cmp │ ! 🎇│ @ 🎊│ # 💲│ $ 💵│ % 🌻│ ^ 🌴│ & 🌹│ * ° │ ( ❲ │ ) ❳ │ _ ≠ │ + ± ┃Backspace┃
+// │ L3  │ 1 🎆│ 2 🎉│ 3 £ │ 4 € │ 5 💯│ 6 💃│ 7 🕺│ 8 • │ 9 ‘ │ 0 ’ │ - – │ = — ┃ ⌫       ┃
+// ┢━━━━━┷━┱───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┺━┳━━━━━━━┫
+// ┃Tab    ┃ Q 😌│ W 📱│ E 🙄│ R 👈│ T 👎│ Y 😭│ U ☝ │ I 🌞│ O 💥│ P 🧨│ { ⁅ │ } ⁆ ┃ ⏎     ┃
+// ┃ ↹     ┃ q 😅│ w 🎁│ e 🤷│ r 🤣│ t 👍│ y 😢│ u 😎│ i 😇│ o 👌│ p 🥺│ [ ⟦ │ ] ⟧ ┃ Enter ┃
+// ┣━━━━━━━┻┱────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┺┓      ┃
+// ┃Hyper   ┃ A 🎹│ S ✨│ D 👇│ F 😊│ G 🤔│ H 💕│ J 🥰│ K 😍│ L 👈│ : 🌅│ " ⸢ │ | ⸣ ┃      ┃
+// ┃        ┃ a 🎷│ s 😀│ d 🎤│ f 🔥│ g 😁│ h ❤️ │ j 😂│ k 😘│ l 🤦│ ; 🏖 │ ' ⸤ │ \ ⸥ ┃      ┃
+// ┣━━━━━━┳━┹───┬─┴───┬─┴───┬─┴───┬─┴───┬─┴───┬─┴───┬─┴───┬─┴───┬─┴───┬─┴───┲━┷━━━━━┻━━━━━━┫
+// ┃Shift ┃ ~ 🐼│ Z 🐈│ X 🐕│ C 🍵│ V 🌋│ B ✊│ N 🎼│ M 🌛│ < 🙈│ > 🙉│ ? 🙊┃Shift         ┃
+// ┃ ⇧    ┃ ` 🐻│ z 🤪│ x 🤞│ c 👏│ v ✌ │ b 🙏│ n 😫│ m 💪│ ,《 │ . 》│ / ⇡ ┃ ⇧            ┃
+// ┣━━━━━┳┻━━━━━╈━━━━━╈━━━━━╈─────┴─────┴─────┴─────┴─────╈━━━━━╈━━━━━╈━━━━━┻━━━━━━━━━━━━━━┫
+// ┃Super┃ Fn   ┃Alt  ┃Ctrl ┃ ␣ Space           Nobreak ⍽ ┃Ctrl ┃Hyper┃ Left    Up    Right┃
+// ┃     ┃      ┃     ┃     ┃ ␣ Space           Nobreak ⍽ ┃     ┃     ┃        Down        ┃
+// ┗━━━━━┻━━━━━━┻━━━━━┻━━━━━┹─────────────────────────────┺━━━━━┻━━━━━┻━━━━━━┻━━━━━━━┻━━━━━┛
+// 
+// Note: The layout below does not define a standard layout
+// ('NoSymbol'). In this diagram above, the layout is shown combined wit
+// us(basic) and some modifications from 'hyper'
+// (hyper:hyper_super_alt_ctrl and hyper:L3L_Multi).
+
+partial alphanumeric_keys modifier_keys
+xkb_symbols "map00" {
+    name[Group1]= "Emoji map";
+
+    // The TLDE key is not mapped, as I'm using it for LVL3. 
+    // However, you can map it if you have another LVL3 key.
+    // key <TLDE> { [ NoSymbol, NoSymbol,  NoSymbol, NoSymbol ] };    // <TLDE> 
+    key <AE01> { [ NoSymbol, NoSymbol,  🎆, 🎇 ] };                   // 1 
+    key <AE02> { [ NoSymbol, NoSymbol,  🎉, 🎊 ] };		      // 2 
+    key <AE03> { [ NoSymbol, NoSymbol,  sterling,    💲  ] };	      // 3 £
+    key <AE04> { [ NoSymbol, NoSymbol,  EuroSign,    💵  ] };	      // 4 €
+    key <AE05> { [ NoSymbol, NoSymbol,  💯, 🌻  ] };  		      // 5 
+    key <AE06> { [ NoSymbol, NoSymbol,	💃, 🌴  ] };	   	      // 6 
+    key <AE07> { [ NoSymbol, NoSymbol,	🕺, 🌹  ] };	      	      // 7 
+    key <AE08> { [ NoSymbol, NoSymbol,  enfilledcircbullet,   degree  ] }; // 8 - •/°
+    key <AE09> { [ NoSymbol, NoSymbol,  leftsinglequotemark,  ❲  ] };  // 9 
+    key <AE10> { [ NoSymbol, NoSymbol,  rightsinglequotemark, ❳  ] };  // 0 
+    key <AE11> { [ NoSymbol, NoSymbol,  endash, 	      notequal  ] }; // minus - –/≠
+    key <AE12> { [ NoSymbol, NoSymbol,  emdash, 	      plusminus ] }; // equal - —/±
+
+    key <AD01> { [ NoSymbol, NoSymbol,  😅,😌 	] };	       // q 
+    key <AD02> { [ NoSymbol, NoSymbol,  🎁, 📱	] };	       // w 
+    key <AD03> { [ NoSymbol, NoSymbol,  🤷, 🙄	] };	       // e 
+    key <AD04> { [ NoSymbol, NoSymbol,  🤣, 👈	] };	       // r 
+    key <AD05> { [ NoSymbol, NoSymbol,  👍, 👎  ] };	       // t 
+    key <AD06> { [ NoSymbol, NoSymbol,  😢, 😭	] };	       // y 
+    key <AD07> { [ NoSymbol, NoSymbol,  😎, ☝   ] };	       // u 
+    key <AD08> { [ NoSymbol, NoSymbol,  😇, 🌞	] };	       // i 
+    key <AD09> { [ NoSymbol, NoSymbol,  👌, 💥  ] };	       // o 
+    key <AD10> { [ NoSymbol, NoSymbol,  🥺 , 🧨 ] };	       // p 
+    key <AD11> { [ NoSymbol, NoSymbol,  ⟦, ⁅    ] };	       // bracketleft 
+    key <AD12> { [ NoSymbol, NoSymbol,  ⟧, ⁆    ] };	       // bracketright 
+
+    key <LSGT> { [ NoSymbol, NoSymbol,  🐻, 🐼  ] };	       // <LSGT>  
+    key <AC01> { [ NoSymbol, NoSymbol,  🎷, 🎹  ] };	       // a  
+    key <AC02> { [ NoSymbol, NoSymbol, 	😀, ✨	] };	       // s 
+    key <AC03> { [ NoSymbol, NoSymbol,	🎤, 👇  ] };	       // d 
+    key <AC04> { [ NoSymbol, NoSymbol,	🔥, 😊	] };	       // f 
+    key <AC05> { [ NoSymbol, NoSymbol,	😁, 🤔	] };	       // g 
+    key <AC06> { [ NoSymbol, NoSymbol,	❤️ , 💕  ] };	       // h 
+    key <AC07> { [ NoSymbol, NoSymbol,	😂 ,🥰 	] };	       // j 
+    key <AC08> { [ NoSymbol, NoSymbol,	😘, 😍  ] };	       // k 
+    key <AC09> { [ NoSymbol, NoSymbol,	🤦, 👉 	] };	       // l 
+    key <AC10> { [ NoSymbol, NoSymbol, 🏖 , 🌅 ] };	       // The ☀️   doesn't work in the conversion...
+    key <AC11> { [ NoSymbol, NoSymbol,	⸢, ⸣ 	] };	       // apostrophe 
+    key <BKSL> { [ NoSymbol, NoSymbol,	⸤, ⸥    ] };	       // backslash  
+
+    key <AB01> { [ NoSymbol, NoSymbol,	🤪,	🐈	] };	       // z 
+    key <AB02> { [ NoSymbol, NoSymbol,	🤞,	🐕	] };	       // x 
+    key <AB03> { [ NoSymbol, NoSymbol,	👏,	🍵 	] };	       // c 
+    key <AB04> { [ NoSymbol, NoSymbol,	✌ , 	🌋	] };	       // v 
+    key <AB05> { [ NoSymbol, NoSymbol,	🙏,	✊	] };	       // b 
+    key <AB06> { [ NoSymbol, NoSymbol,	😫,	🎼	] };	       // n 
+    key <AB07> { [ NoSymbol, NoSymbol,	💪,	🌛	] };	       // m 
+    key <AB08> { [ NoSymbol, NoSymbol,	《,	🙈	] };	       // comma  
+    key <AB09> { [ NoSymbol, NoSymbol,	》,	🙉	] };	       // period 
+    key <AB10> { [ NoSymbol, NoSymbol,	⇡,	🙊	] };	       // slash  
+
+};
+
+partial alphanumeric_keys modifier_keys
+xkb_symbols "map01" {
+    include "emoji(map00)"
+    name[Group1]= "Emoji map (version 1) - reserved for user expansion";
+    // Overwrite individual settings as follows
+    key <AC02> { [ NoSymbol, NoSymbol, 	😀, ✨	] };	               // s 
+};
+
+partial alphanumeric_keys modifier_keys
+xkb_symbols "map02" {
+    include "emoji(map00)"
+    name[Group1]= "Emoji map (version 2) - reserved for user expansion";
+};
+
+

@@ -1,0 +1,137 @@
+// xkb-symbols-emoji
+//
+// Björn (https://gitlab.freedesktop.org/bjohas), 2020-12-27
+// Please get in touch if you think I might be able to help.
+//
+// To create more emoji layouts, see https://github.com/bjohas/xkb-emoji.
+
+// Main layout - does not include a LVL3 key. Needs to be enabled separately
+// (e.g., on command line or, e.g., via Gnome Tweaks)
+default alphanumeric_keys modifier_keys
+xkb_symbols "basic" {
+    name[Group1]= "Emoji layout (variant 01, use ralt for emoji)";
+    include "emoji(map00)"
+    include "level3(ralt_switch)"
+    // key <TLDE> {	[     grave,	asciitilde	]	};
+    // key <LSGT> {	[     grave,	asciitilde	]	};
+};
+
+partial alphanumeric_keys modifier_keys
+xkb_symbols "variant01" {
+    name[Group1]= "English (US) with emoji (variant 1, enable a LVL3 chooser)";
+    include "emoji(map00)"
+    key <LSGT> {	[     grave,	asciitilde	]	};
+};
+
+partial alphanumeric_keys modifier_keys
+xkb_symbols "variant02" {
+    name[Group1]= "Emoji layout (variant 02)";
+    include "emoji(map00)"
+};
+
+partial alphanumeric_keys modifier_keys
+xkb_symbols "variant03" {
+    name[Group1]= "Emoji layout (variant 03)";
+    include "emoji(map00)"
+};
+
+// The layout.
+// 
+// ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┲━━━━━━━━━┓
+// │ Cmp │ ! 🎇│ @ 🎊│ # 💲│ $ 💵│ % 🌻│ ^ 🌴│ & 🌹│ * ° │ ( ❲ │ ) ❳ │ _ ≠ │ + ± ┃Backspace┃
+// │ L3  │ 1 🎆│ 2 🎉│ 3 £ │ 4 € │ 5 💯│ 6 💃│ 7 🕺│ 8 • │ 9 ‘ │ 0 ’ │ - – │ = — ┃ ⌫       ┃
+// ┢━━━━━┷━┱───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┺━┳━━━━━━━┫
+// ┃Tab    ┃ Q 😌│ W 📱│ E 🙄│ R 👈│ T 👎│ Y 😭│ U ☝ │ I 🌞│ O 💥│ P 🧨│ { ⁅ │ } ⁆ ┃ ⏎     ┃
+// ┃ ↹     ┃ q 😅│ w 🎁│ e 🤷│ r 🤣│ t 👍│ y 😢│ u 😎│ i 😇│ o 👌│ p 🥺│ [ ⟦ │ ] ⟧ ┃ Enter ┃
+// ┣━━━━━━━┻┱────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┺┓      ┃
+// ┃Hyper   ┃ A 🎹│ S ✨│ D 👇│ F 😊│ G 🤔│ H 💕│ J 🥰│ K 😍│ L 👈│ : 🌅│ " ⸢ │ | ⸣ ┃      ┃
+// ┃        ┃ a 🎷│ s 😀│ d 🎤│ f 🔥│ g 😁│ h ❤️ │ j 😂│ k 😘│ l 🤦│ ; 🏖 │ ' ⸤ │ \ ⸥ ┃      ┃
+// ┣━━━━━━┳━┹───┬─┴───┬─┴───┬─┴───┬─┴───┬─┴───┬─┴───┬─┴───┬─┴───┬─┴───┬─┴───┲━┷━━━━━┻━━━━━━┫
+// ┃Shift ┃ ~ 🐼│ Z 🐈│ X 🐕│ C 🍵│ V 🌋│ B ✊│ N 🎼│ M 🌛│ < 🙈│ > 🙉│ ? 🙊┃Shift         ┃
+// ┃ ⇧    ┃ ` 🐻│ z 🤪│ x 🤞│ c 👏│ v ✌ │ b 🙏│ n 😫│ m 💪│ ,《 │ . 》│ / ⇡ ┃ ⇧            ┃
+// ┣━━━━━┳┻━━━━━╈━━━━━╈━━━━━╈─────┴─────┴─────┴─────┴─────╈━━━━━╈━━━━━╈━━━━━┻━━━━━━━━━━━━━━┫
+// ┃Super┃ Fn   ┃Alt  ┃Ctrl ┃ ␣ Space           Nobreak ⍽ ┃Ctrl ┃Hyper┃ Left    Up    Right┃
+// ┃     ┃      ┃     ┃     ┃ ␣ Space           Nobreak ⍽ ┃     ┃     ┃        Down        ┃
+// ┗━━━━━┻━━━━━━┻━━━━━┻━━━━━┹─────────────────────────────┺━━━━━┻━━━━━┻━━━━━━┻━━━━━━━┻━━━━━┛
+// 
+// Note: The layout below does not define a standard layout
+// ('NoSymbol'). In this diagram above, the layout is shown combined wit
+// us(basic) and some modifications from 'hyper'
+// (hyper:hyper_super_alt_ctrl and hyper:L3L_Multi).
+
+partial alphanumeric_keys modifier_keys
+xkb_symbols "map00" {
+    name[Group1]= "Emoji map";
+
+    // The TLDE key is not mapped, as I'm using it for LVL3. 
+    // However, you can map it if you have another LVL3 key.
+    // key <TLDE> { [ NoSymbol, NoSymbol,  NoSymbol, NoSymbol ] };    // <TLDE> 
+    key <AE01> { [ NoSymbol, NoSymbol,  U1F386, U1F387 ] };                   // 1  // 🎆🎇
+    key <AE02> { [ NoSymbol, NoSymbol,  U1F389, U1F38A ] };		      // 2  // 🎉🎊
+    key <AE03> { [ NoSymbol, NoSymbol,  sterling,    U1F4B2  ] };	      // 3 £ // 💲
+    key <AE04> { [ NoSymbol, NoSymbol,  EuroSign,    U1F4B5  ] };	      // 4 € // 💵
+    key <AE05> { [ NoSymbol, NoSymbol,  U1F4AF, U1F33B  ] };  		      // 5  // 💯🌻
+    key <AE06> { [ NoSymbol, NoSymbol,	U1F483, U1F334  ] };	   	      // 6  // 💃🌴
+    key <AE07> { [ NoSymbol, NoSymbol,	U1F57A, U1F339  ] };	      	      // 7  // 🕺🌹
+    key <AE08> { [ NoSymbol, NoSymbol,  enfilledcircbullet,   degree  ] }; // 8 - •/°
+    key <AE09> { [ NoSymbol, NoSymbol,  leftsinglequotemark,  U2772  ] };  // 9  // ❲
+    key <AE10> { [ NoSymbol, NoSymbol,  rightsinglequotemark, U2773  ] };  // 0  // ❳
+    key <AE11> { [ NoSymbol, NoSymbol,  endash, 	      notequal  ] }; // minus - –/≠
+    key <AE12> { [ NoSymbol, NoSymbol,  emdash, 	      plusminus ] }; // equal - —/±
+
+    key <AD01> { [ NoSymbol, NoSymbol,  U1F605,U1F60C 	] };	       // q  // 😅😌
+    key <AD02> { [ NoSymbol, NoSymbol,  U1F381, U1F4F1	] };	       // w  // 🎁📱
+    key <AD03> { [ NoSymbol, NoSymbol,  U1F937, U1F644	] };	       // e  // 🤷🙄
+    key <AD04> { [ NoSymbol, NoSymbol,  U1F923, U1F448	] };	       // r  // 🤣👈
+    key <AD05> { [ NoSymbol, NoSymbol,  U1F44D, U1F44E  ] };	       // t  // 👍👎
+    key <AD06> { [ NoSymbol, NoSymbol,  U1F622, U1F62D	] };	       // y  // 😢😭
+    key <AD07> { [ NoSymbol, NoSymbol,  U1F60E, U261D   ] };	       // u  // 😎☝
+    key <AD08> { [ NoSymbol, NoSymbol,  U1F607, U1F31E	] };	       // i  // 😇🌞
+    key <AD09> { [ NoSymbol, NoSymbol,  U1F44C, U1F4A5  ] };	       // o  // 👌💥
+    key <AD10> { [ NoSymbol, NoSymbol,  U1F97A , U1F9E8 ] };	       // p  // 🥺🧨
+    key <AD11> { [ NoSymbol, NoSymbol,  U27E6, U2045    ] };	       // bracketleft  // ⟦⁅
+    key <AD12> { [ NoSymbol, NoSymbol,  U27E7, U2046    ] };	       // bracketright  // ⟧⁆
+
+    key <LSGT> { [ NoSymbol, NoSymbol,  U1F43B, U1F43C  ] };	       // <LSGT>   // 🐻🐼
+    key <AC01> { [ NoSymbol, NoSymbol,  U1F3B7, U1F3B9  ] };	       // a   // 🎷🎹
+    key <AC02> { [ NoSymbol, NoSymbol, 	U1F600, U2728	] };	       // s  // 😀✨
+    key <AC03> { [ NoSymbol, NoSymbol,	U1F3A4, U1F447  ] };	       // d  // 🎤👇
+    key <AC04> { [ NoSymbol, NoSymbol,	U1F525, U1F60A	] };	       // f  // 🔥😊
+    key <AC05> { [ NoSymbol, NoSymbol,	U1F601, U1F914	] };	       // g  // 😁🤔
+    key <AC06> { [ NoSymbol, NoSymbol,	U2764UFE0F , U1F495  ] };	       // h  // ❤️💕
+    key <AC07> { [ NoSymbol, NoSymbol,	U1F602 ,U1F970 	] };	       // j  // 😂🥰
+    key <AC08> { [ NoSymbol, NoSymbol,	U1F618, U1F60D  ] };	       // k  // 😘😍
+    key <AC09> { [ NoSymbol, NoSymbol,	U1F926, U1F449 	] };	       // l  // 🤦👉
+    key <AC10> { [ NoSymbol, NoSymbol, U1F3D6 , U1F305 ] };	       // The ☀️   doesn't work in the conversion... // 🏖🌅
+    key <AC11> { [ NoSymbol, NoSymbol,	U2E22, U2E23 	] };	       // apostrophe  // ⸢⸣
+    key <BKSL> { [ NoSymbol, NoSymbol,	U2E24, U2E25    ] };	       // backslash   // ⸤⸥
+
+    key <AB01> { [ NoSymbol, NoSymbol,	U1F92A,	U1F408	] };	       // z  // 🤪🐈
+    key <AB02> { [ NoSymbol, NoSymbol,	U1F91E,	U1F415	] };	       // x  // 🤞🐕
+    key <AB03> { [ NoSymbol, NoSymbol,	U1F44F,	U1F375 	] };	       // c  // 👏🍵
+    key <AB04> { [ NoSymbol, NoSymbol,	U270C , 	U1F30B	] };	       // v  // ✌🌋
+    key <AB05> { [ NoSymbol, NoSymbol,	U1F64F,	U270A	] };	       // b  // 🙏✊
+    key <AB06> { [ NoSymbol, NoSymbol,	U1F62B,	U1F3BC	] };	       // n  // 😫🎼
+    key <AB07> { [ NoSymbol, NoSymbol,	U1F4AA,	U1F31B	] };	       // m  // 💪🌛
+    key <AB08> { [ NoSymbol, NoSymbol,	U300A,	U1F648	] };	       // comma   // 《🙈
+    key <AB09> { [ NoSymbol, NoSymbol,	U300B,	U1F649	] };	       // period  // 》🙉
+    key <AB10> { [ NoSymbol, NoSymbol,	U21E1,	U1F64A	] };	       // slash   // ⇡🙊
+
+};
+
+partial alphanumeric_keys modifier_keys
+xkb_symbols "map01" {
+    include "emoji(map00)"
+    name[Group1]= "Emoji map (version 1) - reserved for user expansion";
+    // Overwrite individual settings as follows
+    key <AC02> { [ NoSymbol, NoSymbol, 	U1F600, U2728	] };	               // s  // 😀✨
+};
+
+partial alphanumeric_keys modifier_keys
+xkb_symbols "map02" {
+    include "emoji(map00)"
+    name[Group1]= "Emoji map (version 2) - reserved for user expansion";
+};
+
+
+
